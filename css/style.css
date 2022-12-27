@@ -1,0 +1,205 @@
+/*
+COLORS:
+Light green: #7ec56f
+Medium green: #55c57a
+Dark green: #28b485
+
+Light blue: #398eee
+Medium blue: rgba(4, 76, 158)
+Dark blue: rgba(3, 43, 89)
+Dark Dark blue: rgba(1, 18, 37)
+
+*/
+
+*,
+::after,
+::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit; /* les bordures ne sont pas comprises dans la taille globale */
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    /*font-size: 16px;*/
+    line-height: 1.7;
+    color: #777;
+    padding: 1rem;
+
+    box-sizing: border-box;
+}
+
+.header {
+    height: 95vh;
+    border-radius: 0.8rem;
+    background-image: linear-gradient(
+        to right bottom, 
+        rgba(1, 18, 37, 0.6), 
+        rgba(3, 43, 89, 0.7)), 
+        url(../img/andromeda-galaxy.jpg);
+
+    /*background-image: url(../img/andromeda-galaxy.jpg);*/
+    background-size: cover; /* Image aussi grande que possible en conservant les proportions */
+    background-position: top; /* L'image reste au top elle est crop en bas */
+    position: relative;
+    /*clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100% );*/
+    clip-path: polygon(100% 0, 100% 100%, 55% 100%, 50% 95%, 45% 100%, 0 100%, 0 0);
+}
+
+.header__logo-box {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+}
+
+.header__logo {
+    height: 3.5rem;
+    filter: invert(.5);
+}
+
+.header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+
+    backface-visibility: hidden; /* Empêche un glish/bug lors des animations */
+    margin-bottom: 4rem;
+}
+
+.heading-primary--main {
+    display: block; /* Occupe toute la place en santant à la ligne */
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+
+    animation: moveInLeft 0.6s ease-in;
+    /*animation-name: moveInLeft;
+    animation-duration: 0.6s;
+    animation-timing-function: ease-in;*/
+
+    /*
+    animation-delay: 3s;
+    animation-iteration-count: 3;
+    */
+}
+
+.heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.34rem;
+
+    animation: moveInRight .6s ease-in;
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-3rem);
+    }
+
+    80% {
+        transform: translateX(0.4rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(3rem);
+    }
+
+    80% {
+        transform: translateX(-0.4rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: .5rem 2rem;
+    display: inline-block; /* A utiliser quand nous avons des padding*/
+    border-radius: .5rem;
+    transition: all .2s;
+    position: relative;
+}
+
+.btn:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 .4rem 1.5rem rgba(255, 255, 255, .4);
+}
+
+.btn:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 .2rem .8rem rgba(255, 255, 255, .4);
+}
+
+
+.btn--white {
+    background-color: #fff;
+    color: #777;
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: .6rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+
+}
+
+.btn--white::after {
+    background-color: #fff;
+    
+}
+
+.btn:hover::after {
+    transform: scaleX(1.03) scaleY(1.15);
+    opacity: 0;
+}
+
+.btn--animated {
+    animation: moveInBottom .5s ease-out .15s;
+    animation-fill-mode: backwards;
+}
